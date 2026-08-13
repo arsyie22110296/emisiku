@@ -1,0 +1,16 @@
+{
+    "python.defaultInterpreterPath": "C:\\SKRIPSI\\monitoring-emisi-karbon_fix\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\SKRIPSI\\monitoring-emisi-karbon_fix\\venv\\Scripts\\python.exe",
+    "python.analysis.extraPaths": [
+        "C:\\SKRIPSI\\monitoring-emisi-karbon_fix\\venv\\Lib\\site-packages"
+    ]
+    ,
+    "python.analysis.stubPath": "typings"
+    ,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none",
+        "reportUndefinedVariable": "none"
+    }
+    ,
+    "python.analysis.typeCheckingMode": "off"
+}

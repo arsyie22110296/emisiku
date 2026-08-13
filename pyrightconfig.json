@@ -1,0 +1,17 @@
+{
+  "pythonVersion": "3.11",
+  "venvPath": "C:\\SKRIPSI\\monitoring-emisi-karbon_fix",
+  "venv": "venv",
+  "reportIndexIssue": "none",
+  "reportArgumentType": "none",
+  "reportAttributeAccessIssue": "none",
+  "reportReturnType": "none",
+  "reportPossiblyUnboundVariable": "none",
+  "reportCallIssue": "none",
+  "executionEnvironments": [
+    {
+      "root": "C:/SKRIPSI/monitoring-emisi-karbon_fix",
+      "venv": "venv"
+    }
+  ]
+}
