@@ -20,7 +20,8 @@ import report_exporter as rex
 from forecasting_linear import EmissionForecaster, validate_forecast_data
 from anomaly_detector import AnomalyDetector, validate_anomaly_data
 from utils.header import show_header
-
+import sys
+sys.stderr = sys.stdout
 # ================= KONFIGURASI HALAMAN =================
 st.set_page_config(
     page_title="EmisiKu - Monitoring Emisi Karbon UMKM",
@@ -352,7 +353,11 @@ if st.session_state.show_landing:
 </html>
     """
 
-    st.components.v1.html(html_code, height=1080, scrolling=False)
+    st.iframe(
+    src="data:text/html;charset=utf-8," + html_code,
+    height=800,
+    width=1200
+)
 
     # Tangkap sinyal lebih cepat
     if st.query_params.get("start") == "true":
