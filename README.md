@@ -41,7 +41,7 @@
 
 Aplikasi telah dideploy di **Streamlit Community Cloud**:
 
-👉 https://emisiku.streamlit.app
+👉 https://emisiku-app.streamlit.app
 
 ## 📄 Skripsi
 
