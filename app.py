@@ -65,7 +65,7 @@ def image_to_base64(image_path):
 slide_images = {}
 
 for i in range(1, 6):
-    image_path = ASSETS_DIR / f"slide{i}.png"
+    image_path = ASSETS_DIR / f"slide{i}.jpeg"
     image_data = image_to_base64(image_path)
 
     if image_data:
