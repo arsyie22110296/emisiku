@@ -296,14 +296,7 @@ if st.session_state.show_landing:
         <div class="desc">Hitung potensi pendapatan dari perdagangan karbon</div>
         <button class="btn-start" onclick="goToApp()">🚀 Mulai Analisis</button>
     </div>
-    <div class="dots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-        <span class="dot" data-index="2"></span>
-        <span class="dot" data-index="3"></span>
-        <span class="dot" data-index="4"></span>
     </div>
-</div>
 <script>
     (function() {{
         var slides = document.querySelectorAll('.slide');
