@@ -80,8 +80,7 @@ logo_base64 = image_to_base64(logo_path)
 if not logo_base64:
     logo_base64 = ""
     print("⚠️ Logo tidak ditemukan: assets/logo.png")
-        
-# ================= LANDING PAGE =================
+
 # ================= LANDING PAGE =================
 if 'show_landing' not in st.session_state:
     st.session_state.show_landing = True
@@ -228,24 +227,6 @@ if st.session_state.show_landing:
             transform: scale(1.05);
             box-shadow: 0 8px 30px rgba(46,204,113,0.5);
         }}
-        .dots {{
-            position: absolute;
-            bottom: 2rem;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            z-index: 10;
-        }}
-        .dot {{
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #30363d;
-            transition: background 0.3s;
-            cursor: pointer;
-        }}
-        .dot.active {{ background: #2ecc71; }}
         @media (max-width: 768px) {{
             .slide .emoji {{ font-size: 4rem; }}
             .slide .title {{ font-size: 1.8rem; }}
@@ -296,11 +277,10 @@ if st.session_state.show_landing:
         <div class="desc">Hitung potensi pendapatan dari perdagangan karbon</div>
         <button class="btn-start" onclick="goToApp()">🚀 Mulai Analisis</button>
     </div>
-    </div>
+</div>
 <script>
     (function() {{
         var slides = document.querySelectorAll('.slide');
-        var dots = document.querySelectorAll('.dot');
         
         if (slides.length === 0) return;
         
@@ -314,25 +294,13 @@ if st.session_state.show_landing:
 
         function goToSlide(index) {{
             slides.forEach(function(s) {{ s.classList.remove('active'); }});
-            dots.forEach(function(d) {{ d.classList.remove('active'); }});
-            
             slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
             currentIndex = index;
             clearInterval(interval);
             interval = setInterval(changeSlide, 4000);
         }}
 
-        dots.forEach(function(dot) {{
-            dot.addEventListener('click', function() {{
-                var index = parseInt(this.getAttribute('data-index'));
-                goToSlide(index);
-            }});
-        }});
-
         window.goToApp = function() {{
-            // Cara lebih cepat: langsung ubah URL tanpa reload penuh jika memungkinkan
             try {{
                 window.top.location.href = window.top.location.pathname + '?start=true';
             }} catch(e) {{
@@ -350,14 +318,12 @@ if st.session_state.show_landing:
     # Tangkap sinyal lebih cepat
     if st.query_params.get("start") == "true":
         st.session_state.show_landing = False
-        # Langsung clear biar tidak double proses
         st.query_params.clear()
         st.rerun()
 
     st.stop()
-    
+
 # ================= SETELAH LANDING PAGE =================
-# Hapus query parameter agar tidak mengganggu
 if st.query_params.get("start") == "true":
     st.query_params.clear()
     st.rerun()
@@ -528,7 +494,7 @@ def step_dashboard():
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("📂 Belum ada data. Silakan upload dan proses data terlebih dahulu.")
-        
+
 # --- STEP 2: UPLOAD DATA ---
 def step_upload():
     st.title("📂 Upload Data Emisi")
@@ -629,7 +595,7 @@ def step_emission():
     - 🔥 {fuel_type.upper()}: {summary['kontribusi_bbm_persen']:.1f}%
     - 🚚 Transportasi: {summary['kontribusi_transport_persen']:.1f}%
     """)
-    
+
 # --- STEP 4: CLUSTERING ---
 def step_clustering():
     st.title("🧩 K-Means Clustering")
@@ -857,7 +823,7 @@ def step_forecasting():
             • Perubahan 10 hari pertama vs 10 hari terakhir: <b>{pct_change:+.1f}%</b>
         </div>
         """, unsafe_allow_html=True)
-        
+
 # --- STEP 6: ANOMALI ---
 def step_anomaly():
     st.title("⚠️ Deteksi Anomali Emisi")
@@ -984,7 +950,6 @@ def step_carbon():
     if st.button("💚 Hitung Carbon Credit", type="primary"):
         with st.spinner("⏳ Menghitung..."):
             try:
-                # Pastikan fungsi calculate_carbon_credit tersedia
                 from emission_calculator import calculate_carbon_credit, calculate_carbon_credit_per_row
                 
                 summary = calculate_carbon_credit(df, carbon_price_idr_per_ton=price)
